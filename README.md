@@ -20,7 +20,9 @@
 
 *(Input file format: rows are samples, columns are features)*
 
-After uploading the file, ensure to set which column to use as row names (`Column as rowname`), the file delimiter type (Comma, Tab, Space), specify which variables are factor types (`Specify which variables are factor types, one per line`), the normalization method (none, Box-cox normalization using powerTransform package, bestNormalize for optimal method normalization), and provide sample data for download.
+After uploading the file, ensure to set which column to use as row names (`Column as rowname`), the file delimiter type (Comma, Tab, Space). The check.name parameter checks the variable name (here, the symbols such as `+-: ()` are replaced with `_`, mainly because special symbols need to be avoided where formulas are used. And specify which variables are factor types (`Specify which variables are factor types, one per line`), the normalization method (none, Box-cox normalization using powerTransform package, bestNormalize for optimal method normalization), and provide sample data for download.
+
+
 
 The phenotype analysis module allows users to browse data, summarize data using {*skimr*}, specify factor variables, normalize numerical variables using {*powerTransform* and *bestNormalize*} and their correlation heatmaps using {*linkET*}, and perform descriptive statistics and logistic regression analysis using {*autoReg*}.
 
@@ -39,7 +41,7 @@ The specific parts of the phenotype analysis module include:
 
 *(Input file format: rows are features, columns are samples)*
 
-After uploading the file, ensure to select the file delimiter type (Comma, Tab, Space). Use the **Mean cutoff** parameter to filter rows based on mean value thresholds, and the **Prevalence cutoff** parameter to filter rows based on non-zero prevalence thresholds. These thresholds help remove low abundance and low prevalence rows. Checking the **Re-scaled** option will rescale each column to relative values summing to 100. The **is.metaphlan_name** option is for cases where row names follow the Metaphlan format (k__|p__|o__|c__|f__|g__|s__|t__), allowing selection of different taxonomy levels. Sample data is provided for download.
+After uploading the file, ensure to select the file delimiter type (Comma, Tab, Space). Use the **Mean cutoff** parameter to filter rows based on mean value thresholds, and the **Prevalence cutoff** parameter to filter rows based on non-zero prevalence thresholds. These thresholds help remove low abundance and low prevalence rows. Checking the **Re-scaled** option will rescale each column to relative values summing to 100. The **is.metaphlan_name** option is for cases where row names follow the Metaphlan format (k__|p__|o__|c__|f__|g__|s__|t__), allowing selection of different taxonomy levels. The check.name parameter checks the variable name (here, the symbols such as `+-: ()` are replaced with `_`, mainly because special symbols need to be avoided where formulas are used. Sample data is provided for download.
 
 The **Grouping parameters** sub-module is used for grouped analysis during abundance data analysis. You can upload the corresponding grouping file and select grouping and/or stratification variables in the **Grouping Variable** and **Stratificate Variable** sub-modules. These selections are flexible and can be interchanged to explore your data. Once a grouping variable is selected, you can customize subgroup selections and their order in the **Group rank** section, with similar options for stratification variables. Ensure that the column names of the abundance matrix file and the row names of the phenotype file are sample names and remain consistent.
 

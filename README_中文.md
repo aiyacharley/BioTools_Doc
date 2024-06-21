@@ -15,7 +15,7 @@ BioTools: 一个基于R语言shiny框架的生物信息学综合分析Web应用
 
 ### 表型分析(Phenotype)
 *(输入文件格式：行是样本，列是特征)*
-上传文件后需要注意设置哪一列作为行名（`Column as rowname`），文件分隔符类型（逗号Comma, 制表符Tab, 空格Space），指定哪些变量为因子类型格式（`Specify which variables are factor types, one per line`），标准化方法（不做标准化none，powerTransform包做Box-cox标准化，bestNormalize选择最优的方式标准化），并提供下载示例数据。
+上传文件后需要注意设置哪一列作为行名（`Column as rowname`），文件分隔符类型（逗号Comma, 制表符Tab, 空格Space），check.name参数对变量名做检查（这里对+-:()空格等符号用_替换，主要是在用到公式的地方需要避免特殊符号），指定哪些变量为因子类型格式（`Specify which variables are factor types, one per line`），标准化方法（不做标准化none，powerTransform包做Box-cox标准化，bestNormalize选择最优的方式标准化），并提供下载示例数据。
 表型分析模块允许用户浏览数据，汇总数据{*skimr*}，指定因子变量，标准化数值变量{*powerTransform*，*bestNormalize*}及其相关性热图{*linkET*}，并使用{*autoReg*}进行描述统计和逻辑回归分析。
 
 以下是表型分析(Phenotype)各个分析部分的介绍：
@@ -29,7 +29,7 @@ BioTools: 一个基于R语言shiny框架的生物信息学综合分析Web应用
 
 ### 丰度矩阵分析(Single-omics)
 *(输入文件格式：行是特征，列是样本)*
-上传文件后需要注意选择文件分隔符类型（逗号Comma, 制表符Tab, 空格Space），**Mean cutoff**参数过滤行的均值阈值，**Prevalence cutoff**参数过滤行的非0流行度阈值，可以简单通过这两个阈值把低丰度低流行度的行去除。勾选**Re-scaled**参数则将每一列重新标化为总和为100的相对数值。勾选**is.metaphlan_name**则是当输入文件的行名为metaphlan格式（k__|p__|o__|c__|f__|g__|s__|t__）时使用，进一步选择不同taxonomy层级的菌。本模块同样提供下载示例数据。
+上传文件后需要注意选择文件分隔符类型（逗号Comma, 制表符Tab, 空格Space），**Mean cutoff**参数过滤行的均值阈值，**Prevalence cutoff**参数过滤行的非0流行度阈值，可以简单通过这两个阈值把低丰度低流行度的行去除。勾选**Re-scaled**参数则将每一列重新标化为总和为100的相对数值。勾选**is.metaphlan_name**则是当输入文件的行名为metaphlan格式（k__|p__|o__|c__|f__|g__|s__|t__）时使用，进一步选择不同taxonomy层级的菌，check.name参数对变量名做检查（这里对+-:()空格等符号用_替换，主要是在用到公式的地方需要避免特殊符号）。本模块同样提供下载示例数据。
 **Grouping parameters**子模块是分析丰度数据过程中需要分组分析，可以上传相应的分组文件，可以在**Grouping Variable**和或**Stratificate Variable**子模块选择分组变量和或分层变量，这两个选择并不死板，有时候可以交换来探索你的数据，一旦选择了某一分组变量就可以在**Group rank**中自定义选择某些亚组及这些组的排序，分层变量同理。随之而来的，在之后的结果中也会有分组或分层的体现。注意确保丰度矩阵文件的列名和表型文件的行名都是样本名并保持一致。
 **microeco taxa table**子模块是可选的功能，用户可以提供菌群丰度表的各层级taxonomy文件，提供之后效果和metaphlan格式文件类似，对于16s数据分析这个文件是需要的。
 **ggplot2 parameters**子模块是调整ggplot2绘图参数的面板，目前提供的功能是调整图片字体大小。
